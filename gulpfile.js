@@ -1,5 +1,3 @@
-const M = require("minimatch");
-
 const gulp = require("gulp"),
     dist = "C:\\xampp\\htdocs\\react_admin\\admin",
     webpack = require('webpack-stream'),
@@ -7,7 +5,7 @@ const gulp = require("gulp"),
     prod = "./build/",
     autoprefixer = require('autoprefixer'),
     cleanCSS = require("gulp-clean-css"),
-    postCSS = require("gulp-postcss");
+    postcss = require("gulp-postcss");
 
 gulp.task("copy-html", () => {
     return gulp.src("./app/src/index.html")
@@ -112,7 +110,7 @@ gulp.task('production', () => {
         .pipe(gulp.dest(prod));
     return gulp.src("./app/scss/style.scss")
         .pipe(sass().on('error', sass.logError))
-        .pipe(postCSS([autoprefixer()]))
+        .pipe(postcss([autoprefixer()]))
         .pipe(cleanCSS())
         .pipe(gulp.dest(dist));    
 });
